@@ -62,5 +62,10 @@ public class ConsultaControle {
 	public List<Consulta> listarParaEnfermaria() {
 		return consultaServico.listarParaEnfermaria();
 	}
+	
+	@GetMapping("/consultas")
+    public List<Consulta> listarTodas() {
+        return consultaServico.listarTodas();
+    }
 
 }

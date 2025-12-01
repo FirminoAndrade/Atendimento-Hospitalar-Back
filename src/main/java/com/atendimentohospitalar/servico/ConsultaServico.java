@@ -1,6 +1,7 @@
 package com.atendimentohospitalar.servico;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -103,5 +104,17 @@ public class ConsultaServico {
 		return Optional.ofNullable(consultaRepository.findByStatus(StatusConsulta.NECESSITA_MEDICACAO))
 				.filter(lista -> !lista.isEmpty())
 				.orElseThrow(() -> new RuntimeException("Nenhuma consulta encontrada com status NECESSITA MEDICACAO"));
+	}
+	
+	public List<Consulta> listarTodas() {
+	    List<Consulta> consultas = consultaRepository.findAll();
+
+	    if (consultas == null || consultas.isEmpty()) {
+	        throw new RuntimeException("Nenhuma consulta encontrada");
+	    }
+
+	    Collections.reverse(consultas);
+
+	    return consultas;
 	}
 }
